@@ -1,6 +1,6 @@
 # Payment
 ## Docker config info
-The service is run on the 3000 port. 
+The service is run on the 3000 port (may be changed in compose configs). 
 
 ### Requied environment variables
 - DB_HOST - in case of compose it's the name of the postgre service
