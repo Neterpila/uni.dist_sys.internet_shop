@@ -32,3 +32,10 @@ services:
       PORT: ${PAYMENT_PORT}
     ports:
       - ${PAYMENT_PORT}:${PAYMENT_PORT}
+
+  main: 
+    build: ./services/main
+    ports: 
+      - "3001:3001"
+    depends_on:
+      - postgres
