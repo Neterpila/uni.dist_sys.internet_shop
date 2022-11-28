@@ -8,3 +8,4 @@ services/**/node_modules
 # db
 services/postgres/data
 services/postgres/debug
+services/main/tmp
