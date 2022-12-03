@@ -6,21 +6,21 @@ Backend consists of several microservices each run in docker using compose. This
 ## Architecture and description
 *Things you are gonna read down below might be a subject for constant change*
 
-![architecture scheme placeholder](./put/an/image/here.jpeg)
+![architecture](./misc/architecture.jpg)
 
-Planned services:
+Services:
 - Payment Service - manages the payments, checks out orders, issues invoices, etc.
 - Catalogue Service - enables users to publish their items, viewing others' items, filtering, etc.
-- Entrypoint Service - handles authorization, provides UI views, routes requests, etc.
-- smth else idk
+- Store Service - enables cart functionality, order composition, etc.
+- Entrypoint Service - provides UI views, handles authorization, routes requests, etc.
 
 Technologies:
-- Node.js - runtime environment for JS (for backend microservices)
+- Docker - OS-level virtualization software | running services
+- Node.js - runtime environment for JS | backend microservices
 - Express - JS library for HTTP servers
 - PostgreSQL - a database for storing users, items, orders and other data
 - node-postgres (pg) - a JS library for Postgre connection
-- Ruby on Rails - web-app framework (for backend microservices)
-- smth else idk
+- Ruby on Rails - web-app framework | backend / UI views
 
 
 ## How to run the backend?

@@ -55,4 +55,7 @@ http://localhost:3000/checkout/2<br>
 Response:
 200
 
+### GET /invoice/<order_id>/<item_id>
+*not yet implemented*
+
 <br><br>*At some point docker network will be configured is such a way that all of the services except the Primary Entrypoint will be unavailable. Until then you may request the endpoints using your preferred client (e.g. Postman).*
