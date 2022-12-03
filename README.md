@@ -1,5 +1,15 @@
 # Internet Shop
-This repo contains a backend of a university group project for 'distributed systems' subject. The goal is to create an internet shop, where people will be able to put up their items for sale or purchase other people's items. People have their internal wallets with virtual money which they use for tradind. Integration with real payment systems is beyond the concern of this project. Primary goal is to create a distributed system with microservice architecture where services may communicate with each other.
+This repo contains a backend of a university group project for 'distributed systems' subject.
+
+The goal is to create an internet shop, where people will be able to put up their items for sale or purchase other people's items. People have their internal wallets with virtual money which they use for trading. Integration with real payment systems is beyond the concern of this project. Primary goal is to create a distributed system with microservice architecture where services may communicate with each other.
+
+MVP end should will allow for:
+- creating user accounts and logging in
+- putting up owned items for sale (providing description, price and other required data)
+- browsing other peoples' items using optional filters
+- adding items to cart, modifying current order and finalizing it (by performing payment)
+- browsing one's past orders
+- generating invoices for bought items as pdf files
 
 Backend consists of several microservices each run in docker using compose. This repo contains all those microservies along with configuration files to run everything.
 
