@@ -9,3 +9,6 @@ services/**/node_modules
 services/postgres/data
 services/postgres/debug
 services/main/tmp
+
+# macOS
+**/.DS_Store
