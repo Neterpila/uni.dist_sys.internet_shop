@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(require('./app/payment'));
+app.use(require('./app/invoice'));
 
 app.get("/health", async (req, res) => {
     let qres = await db_client.query('SELECT NOW()');

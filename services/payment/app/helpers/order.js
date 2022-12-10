@@ -89,4 +89,4 @@ async function setPaid(client, id) {
     await client.query("UPDATE public.order SET paid = 'true' WHERE id = " + order.id);
 }
 
-module.exports = { findById, getSum, removePurchasedItems, addMoneyToSellers, substractMoneyFromBuyer, setPaid };
+module.exports = { findById, getSum, removePurchasedItems, addMoneyToSellers, substractMoneyFromBuyer, setPaid, getOrderContent };
