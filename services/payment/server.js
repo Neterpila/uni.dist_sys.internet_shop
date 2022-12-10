@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.use(require('./app/payment'));
+app.use(require('./app/checkout'));
 app.use(require('./app/invoice'));
 
 app.get("/health", async (req, res) => {
