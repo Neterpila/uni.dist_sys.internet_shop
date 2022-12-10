@@ -55,7 +55,27 @@ http://localhost:3000/checkout/2<br>
 Response:
 200
 
-### GET /invoice/<order_id>/<item_id>
-*not yet implemented*
+### GET /invoice/<order_id>
+Input parameters:
+- order id (pk in the database)
+
+Generates a pdf with with invoice(s) for passed order.<br>
+In case the order contains items from different sellers the pdf will contain several invoices - one for each seller. Each invoice is generated on a separate page in the pdf.
+
+Responses:
+- 400 - classic bad request | *look for the message in response body for more info*
+- 200 - the pdf is sent as a stream
+
+Examples:<br>
+GET<br>
+http://localhost:3000/checkout/123<br>
+
+Response:
+400
+```json
+{
+    "message": "Order with id '123' does not exist"
+}
+```
 
 <br><br>*At some point docker network will be configured is such a way that all of the services except the Primary Entrypoint will be unavailable. Until then you may request the endpoints using your preferred client (e.g. Postman).*
