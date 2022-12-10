@@ -10,6 +10,9 @@ DB data directory is mounted to `services/postgres/data` directory using docker 
 For debugging purposes you may need to populate the db with your own data.<br>
 At some point docker network will be configured is such a way that all of the services except the Primary entrypoint will be unavailable. Until then, you may connect directly to database using any db client of choice. One such client is DBeaver (https://dbeaver.io/).<br>
 If you're running it on your own machine the host will obviously be `localhost`. As for the port, database name, user and password - check out `docker-compose.yml` and `.env` files, everything is passed to the containers as environment variables.
+If you want to access the Postgres console using the running image in the conter should: 
+- get to the local server - `docker exec -it <container_id> bash`
+- start console - `psql -d <database_name> -U <database_user_name>`
 
 ## DB Diagram
 *This might be a subject for change*
