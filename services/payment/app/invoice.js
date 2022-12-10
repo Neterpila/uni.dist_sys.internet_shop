@@ -37,7 +37,7 @@ router.get("/invoice/:order_id", async (req, res, next) => {
             case "order_does_not_exist":
                 return res.status(400).send({ message: "Order with id '" + order_id + "' does not exist" });
             case "order_not_yet_paid":
-                return res.status(409).send({ message: "This order is not yet paid" });
+                return res.status(400).send({ message: "This order is not yet paid" });
             default:
                 console.error("invoice | unexpected error: " + err.message || err);
                 return next(err);
