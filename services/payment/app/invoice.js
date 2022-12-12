@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
+const moment = require("moment-timezone");
 const db_client_pool = require("./db");
 const PDFDocument = require('pdfkit-table');
 const Order = require("./helpers/order");
@@ -95,7 +96,10 @@ async function generateInvoice(data) {
                     { label: "Data wystawienia", property: "date", width: Math.floor(content_width * 0.45), align: "center" }
                 )
             ],
-            datas: [{ date: "sdfsdfsdf 234", options: defaultTableDatasOptions(0) }],
+            datas: [{ 
+                date: moment().tz("Europe/Warsaw").locale("pl").format("DD-MM-YYYY"),
+                options: defaultTableDatasOptions(0) 
+            }],
             options
         }, defaulTablePreparers(doc));
 
