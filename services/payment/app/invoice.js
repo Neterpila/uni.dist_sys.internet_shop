@@ -146,9 +146,9 @@ async function generateInvoice(data) {
             datas: group.positions.map((position, index) => {
                 return {
                     item: position.item.name,
-                    price: position.item.price + " " + currency_name,
+                    price: position.item.price.toFixed(2) + " " + currency_name,
                     quantity: position.quantity,
-                    sum: position.item.price * position.quantity + " " + currency_name,
+                    sum: (position.item.price * position.quantity).toFixed(2) + " " + currency_name,
                     options: defaultTableDatasOptions(index)
                 }
             }),
@@ -163,7 +163,7 @@ async function generateInvoice(data) {
             .reduce((sum, position_price) => sum + position_price, 0);
             
         doc.font(__dirname + "/resources/Roboto-Bold.ttf").fontSize(14);
-        doc.text("Do zapłaty: " + group_sum + " " + currency_name, {
+        doc.text("Do zapłaty: " + group_sum.toFixed(2) + " " + currency_name, {
             align: 'right'
         });
 
