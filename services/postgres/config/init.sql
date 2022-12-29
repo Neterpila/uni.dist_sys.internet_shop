@@ -23,13 +23,13 @@ CREATE TABLE IF NOT EXISTS public."user" (
 CREATE TABLE IF NOT EXISTS public.item (
 	id serial NOT NULL,
 	"name" text NOT NULL,
-	category_id serial NOT NULL,
-	owner_id serial NOT NULL,
+	category_id int NOT NULL,
+	owner_id int NOT NULL,
 	description text NULL,
 	price numeric(10,2) NOT NULL,
 	quantity int NOT NULL,
 	CONSTRAINT item_pk PRIMARY KEY (id),
-	CONSTRAINT item_fk_cat FOREIGN KEY (id) REFERENCES public.category(id),
+	CONSTRAINT item_fk_cat FOREIGN KEY (category_id) REFERENCES public.category(id),
 	CONSTRAINT item_fk_user FOREIGN KEY (owner_id) REFERENCES public."user"(id)
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS public.item (
 -- public."order" definition
 CREATE TABLE IF NOT EXISTS public."order" (
 	id serial NOT NULL,
-	user_id serial NOT NULL,
+	user_id int NOT NULL,
 	paid bool NOT NULL DEFAULT false,
 	delivery_address text NULL,
 	CONSTRAINT order_pk PRIMARY KEY (id),
