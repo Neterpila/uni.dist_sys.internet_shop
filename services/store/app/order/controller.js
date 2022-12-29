@@ -33,7 +33,7 @@ router.post("/", async (req, res, next) => {
         return res.status(400).send({ message: "Request is expected to have a 'user_id' query parameter" });
 
     try {
-        return res.status(200).send(await service.createUnpaidOrder(user_id));
+        return res.status(201).send(await service.createUnpaidOrder(user_id));
     } catch (err) {
         switch (err.type) {
             case "user_invalid_id":

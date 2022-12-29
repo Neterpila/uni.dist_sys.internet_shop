@@ -51,8 +51,10 @@ async function expandOrderContent(order) {
     client.release();
 
     order.content = await Promise.all(qres.rows.map(async row => {
+        let item = await findById("item", row.item_id);
+        item.price = parseFloat(item.price);
         return {
-            item: await findById("item", row.item_id),
+            item,
             quantity: row.quantity
         };
     }));
