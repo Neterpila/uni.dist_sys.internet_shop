@@ -1,5 +1,5 @@
 {
-  "name": "checkout",
+  "name": "store",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,8 +14,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "lodash": "^4.17.21",
-    "pg": "^8.8.0",
-    "pdfkit-table": "^0.1.99",
-    "moment-timezone": "^0.5.40"
+    "pg": "^8.8.0"
   }
 }
