@@ -32,6 +32,20 @@ services:
       PORT: ${PAYMENT_PORT}
     ports:
       - ${PAYMENT_PORT}:${PAYMENT_PORT}
+    
+  store:
+    build: ./services/store
+    depends_on:
+      postgres:
+        condition: "service_healthy"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: ${POSTGRES_PORT}
+      DB_USER: ${POSTGRES_USERNAME}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB_NAME}
+    ports:
+      - ${STORE_PORT}:8080
 
   main: 
     build: ./services/main
