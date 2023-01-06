@@ -44,6 +44,10 @@ gem "bootsnap", require: false
 
 gem 'bootstrap-sass', '3.4.1'
 
+gem 'pry'
+
+gem 'rest-client'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
