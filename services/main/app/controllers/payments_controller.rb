@@ -2,6 +2,9 @@ class PaymentsController < ActionController::Base
 	def create
 		begin
 			@response = RestClient.post "http://localhost:3000/checkout/#{order_id}", :content_type => 'application/json'
+		rescue RestClient::Conflict => e
+			flash["danger"] = "Przepraszamy, zamówienie nie mogło zostać opłacone z powodu niewystarczających środków na koncie."
+			redirect_to "/search" and return
 		rescue => e
 			flash["danger"] = "Przepraszamy, zamówienie nie mogło zostać opłacone."
 			redirect_to "/search" and return

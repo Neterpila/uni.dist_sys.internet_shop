@@ -16,15 +16,15 @@
       <th> Nazwa</th>
       <th> Kategoria</th>
       <th> Liczba sztuk</th>
-      <th> Cena</th>
+      <th> Cena zł</th>
       <th>Szczegóły</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @results.each do |result| %>
+    <% @results.each.with_index(1) do |result, index| %>
       <tr>
-        <td><%= result.id %></td>
+        <td><%= index %></td>
         <td><%= result.name %></td>
         <td><%= result.category %></td>
         <td><%= result.quantity %></td>
