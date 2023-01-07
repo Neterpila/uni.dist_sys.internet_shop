@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :search, only: [:index, :show]
   resources :products, only: [:show, :create]
   resources :orders
-  resources :payments, only: [:create]
+  resources :payments
   resources :invoices
 end

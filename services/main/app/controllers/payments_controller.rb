@@ -7,7 +7,11 @@ class PaymentsController < ActionController::Base
 			redirect_to "/search" and return
 		end
 		flash["success"] = "Zamówienie zostało opłacone"
-		redirect_to "/search"
+		redirect_to "/payments/#{order_id}"
+	end
+
+	def show
+		@order_id = order_id
 	end
 
 	private

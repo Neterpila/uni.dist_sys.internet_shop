@@ -11,8 +11,6 @@ class OrdersController < ActionController::Base
 	end
 
 	def show
-		require 'pry'
-		binding.pry
 		@order = begin
 			JSON.parse get_order
 		rescue => e 

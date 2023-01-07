@@ -38,8 +38,8 @@
     </tbody>
     </div>
     </table>
-      <div type="button" class="btn btn-dark", style="font-size: 20px; float:right; padding-right: 150px;">
-    <%= button_to "Opłać zamówienie", payments_path, :class => "btn btn-primary", method: :post, params: { order_id: @order["id"] }%>
+      <div type="button" class="btn btn-dark", style="font-size: 20px; float:right; padding-right: 230px;">
+    <%= button_to "Opłać zamówienie", payments_path, :class => "btn btn-primary btn-lg", method: :post, params: { order_id: @order["id"] }%>
   </div>
 <% else %>
   <div style="text-align: center; font-size: 50px;">Brak aktualnych zamówień. Zachęcamy do skorzystania z naszej wyszukiwarki.</div>

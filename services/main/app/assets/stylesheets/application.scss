@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets"; 
 @import "bootstrap";
 
+
 input, textarea, select, .uneditable-input { border: 1px solid #bbb;
     width: 100%;
     margin-bottom: 15px; }
@@ -9,6 +10,7 @@ input, textarea, select, .uneditable-input { border: 1px solid #bbb;
     }
 
 body {
+    font-size: 18px;
     padding-top: 60px;
     }
     section { 
@@ -22,6 +24,7 @@ body {
     }
     .center h1 { margin-bottom: 10px;
     }
+    
 
 
 #logo {
@@ -56,6 +59,6 @@ p {
     }
 
 p1 {
-    font-size: 14px;
+    font-size: 20px;
     }
 
