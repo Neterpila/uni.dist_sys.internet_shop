@@ -12,3 +12,6 @@ services/main/tmp
 
 # macOS
 **/.DS_Store
+
+# logs
+services/loki/data
