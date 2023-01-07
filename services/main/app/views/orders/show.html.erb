@@ -8,7 +8,7 @@
 	<h1>zamówienie</h1>
 </div>
 
-<% if(@order.present?) %>
+<% if(@order.present? && @order["content"].present?) %>
   <div >
   <table class="table" >
     <thead>
@@ -16,7 +16,8 @@
         <th> Lp. </th>
         <th> Nazwa</th>
         <th> Liczba sztuk</th>
-        <th> Cena (zł) </th>
+        <th> Cena (zł) </th>  
+        <th> Opcje </th>
       </tr>
     </thead>
 
@@ -27,6 +28,7 @@
           <td><%= item["item"]["name"] %></td>
           <td><%= item["quantity"] %></td>
           <td><%= (item["item"]["price"] * item["quantity"]).round(2)%></td>
+          <td><%= link_to "Usuń", edit_order_path(order_id: @order["id"], item_id: item["item"]["id"]), method: :put, params: { order_id: @order["id"], item_id: item["id"] }%></td>
         </tr>
       <% end %>
           <tr>
@@ -34,6 +36,7 @@
           <td></td>
           <td style="font-weight: bold">Łączna cena:</td>
           <td style="font-weight: bold"><%=  @order["content"].inject(0) { |sum,item| sum + (item["item"]["price"] * item["quantity"]) }.round(2) %> zł</td>
+          <td></td>
         </tr>
     </tbody>
     </div>

@@ -18,8 +18,19 @@ class OrdersController < ActionController::Base
 		end
 	end
 
-	private 
+	def edit
+		begin
+			RestClient.put "http://localhost:3002/remove?order_id=#{params["order_id"]}&item_id=#{params["item_id"]}", :content_type => 'application/json'
+		rescue => e 
+			flash[:danger] = "Przepraszamy, nie udało się usunąć pozycji."
+			redirect_to "/orders/#{params["order_id"]}" and return
+		end
+		flash[:success] = "Pozycja została usunięta poprawnie"
+		redirect_to "/orders/#{params["order_id"]}" and return
+	end
 
+	private 
+	
 	def create_order
 		open_new_order if user_has_no_opened_orders?
 		add_product_to_order
