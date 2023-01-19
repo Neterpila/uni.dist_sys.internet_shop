@@ -20,7 +20,7 @@ class OrdersController < ActionController::Base
 
 	def edit
 		begin
-			RestClient.put "http://localhost:3002/remove?order_id=#{params["order_id"]}&item_id=#{params["item_id"]}", :content_type => 'application/json'
+			RestClient.put "http://host.docker.internal:3002/remove?order_id=#{params["order_id"]}&item_id=#{params["item_id"]}", :content_type => 'application/json'
 		rescue => e 
 			flash[:danger] = "Przepraszamy, nie udało się usunąć pozycji."
 			redirect_to "/orders/#{params["order_id"]}" and return
@@ -46,9 +46,9 @@ class OrdersController < ActionController::Base
 
 	def add_order_url
 		if params["quantity"].present?
-			"http://localhost:3002/add?order_id=#{parsed_response["id"]}&item_id=#{item_id}&quantity=#{params["quantity"]}"
+			"http://host.docker.internal:3002/add?order_id=#{parsed_response["id"]}&item_id=#{item_id}&quantity=#{params["quantity"]}"
 		else
-			"http://localhost:3002/add?order_id=#{parsed_response["id"]}&item_id=#{item_id}"
+			"http://host.docker.internal:3002/add?order_id=#{parsed_response["id"]}&item_id=#{item_id}"
 		end
 	end
 
@@ -59,7 +59,7 @@ class OrdersController < ActionController::Base
 	end
 	
 	def get_order
-		@response = RestClient.get "http://localhost:3002?user_id=#{user_id}", :content_type => 'application/json'
+		@response = RestClient.get "http://host.docker.internal:3002?user_id=#{user_id}", :content_type => 'application/json'
 	end
 
 	def parsed_response
@@ -67,7 +67,7 @@ class OrdersController < ActionController::Base
 	end
 
 	def open_new_order
-		@response = RestClient.post "http://localhost:3002?user_id=#{user_id}", :content_type => 'application/json'
+		@response = RestClient.post "http://host.docker.internal:3002?user_id=#{user_id}", :content_type => 'application/json'
 	end
 
 	def item_id
