@@ -14,6 +14,7 @@
         <%= link_to "pollegro", root_path, id: "logo" %> 
           <nav>
             <ul class="nav navbar-nav navbar-right"> 
+              <li><%= link_to "Moje zamówienie", '/orders/1' %></li> 
               <li><%= link_to "Strona główna", root_path %></li> 
               <li><%= link_to "Pomoc", root_path %></li> 
               <li><%= link_to "Zaloguj się", root_path %></li>
@@ -21,6 +22,11 @@
           </nav>
       </div>
       </header>
+            <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>" role="alert"">
+        <div><%= message %></div>
+    </div>
+      <% end %>
     <%= yield %>
   </body>
 </html>

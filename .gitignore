@@ -8,6 +8,8 @@ services/**/node_modules
 # db
 services/postgres/data
 services/postgres/debug
+
+# main
 services/main/tmp
 
 # macOS
