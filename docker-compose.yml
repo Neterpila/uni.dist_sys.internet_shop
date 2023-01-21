@@ -1,6 +1,8 @@
 version: "3"
+name: internet_shop
 services:
   postgres:
+    container_name: postgres
     build: ./services/postgres
     restart: unless-stopped
     environment:
@@ -19,6 +21,7 @@ services:
       start_period: 15s 
 
   payment:
+    container_name: payment
     build: ./services/payment
     depends_on:
       postgres:
@@ -34,6 +37,7 @@ services:
       - ${PAYMENT_PORT}:${PAYMENT_PORT}
     
   store:
+    container_name: store
     build: ./services/store
     depends_on:
       postgres:
@@ -47,9 +51,80 @@ services:
     ports:
       - ${STORE_PORT}:8080
 
-  main: 
+  main:
+    container_name: main
     build: ./services/main
     ports: 
       - "3001:3001"
     depends_on:
       - postgres
+
+  prometheus:
+    container_name: prometheus
+    profiles:
+      - monitoring
+    image: prom/prometheus
+    volumes:
+      - ./services/prometheus/config.yml:/etc/prometheus/prometheus.yml:rw
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - ${PROMETHEUS_PORT}:9090
+
+  cadvisor:
+    container_name: cadvisor
+    profiles:
+      - monitoring
+    image: gcr.io/cadvisor/cadvisor
+    ports:
+      - ${CADVISOR_PORT}:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+
+  grafana:
+    container_name: grafana
+    profiles:
+      - monitoring
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=grafana_pass
+    volumes:
+      - ./services/grafana/data:/var/lib/grafana:rw
+      - ./services/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    ports:
+      - ${GRAFANA_PORT}:3000
+
+  node-exporter:
+    container_name: node_exporter
+    profiles:
+      - monitoring
+    image: prom/node-exporter
+    ports:
+      - ${NODE_EXPORTER_PORT}:9100
+
+  loki:
+    container_name: loki
+    profiles:
+      - monitoring
+    image: grafana/loki
+    ports:
+      - "${LOKI_PORT}:3100"
+    volumes:
+      - ./services/loki/data:/loki
+
+  promtail:
+    container_name: promtail
+    profiles:
+      - monitoring
+    image: grafana/promtail
+    volumes:
+      - ./services/promtail/config.yaml:/etc/promtail/config.yml
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
